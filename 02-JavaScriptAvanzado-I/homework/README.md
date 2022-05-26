@@ -11,29 +11,29 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 x = 1;
 var a = 5;
 var b = 10;
-var c = function(a, b, c) {
+var c = function(a, b, c) { // 8 , 9 , 10
   var x = 10;
-  console.log(x);
-  console.log(a);
-  var f = function(a, b, c) {
-    b = a;
-    console.log(b);
-    b = c;
-    var x = 5;
+  console.log(x + "imprime 10");
+  console.log(a + "imprime 8");
+  var f = function(a, b, c) { //reasigna valores (8 , 9 , 10)
+    b = a;//8
+    console.log(b + "imprime 9");
+    b = c;//10
+    var x = 5; // declara una nueva variable x
   }
-  f(a,b,c);
-  console.log(b);
+  f(a,b,c); //8 , 10 , 10
+  console.log(b + "imprime 10");
 }
 c(8,9,10);
-console.log(b);
-console.log(x);
+console.log(b + "imprime 10");
+console.log(x + "imprime 1");
 ```
 
 ```javascript
-console.log(bar);
-console.log(baz);
+console.log(bar+ "Imprime undefined");
+console.log(baz + "Imprime no definida");
 foo();
-function foo() { console.log('Hola!'); }
+function foo() { console.log('Hola!'); } //se imprime por el hiosting se lleva toda la funcipn completa
 var bar = 1;
 baz = 2;
 ```
@@ -43,19 +43,19 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);
+console.log(instructor + " imprime franco "); //por que el bar noo respeta el contexto de ejecucion y lo sobreescribe
 ```
 
 ```javascript
 var instructor = "Tony";
-console.log(instructor);
+console.log(instructor + "imprime tony");
 (function() {
    if(true) {
       var instructor = "Franco";
-      console.log(instructor);
+      console.log(instructor + "imprime franco");
    }
 })();
-console.log(instructor);
+console.log(instructor + "imprime Tony");
 ```
 
 ```javascript
@@ -64,32 +64,32 @@ let pm = "Franco";
 if (true) {
     var instructor = "The Flash";
     let pm = "Reverse Flash";
-    console.log(instructor);
-    console.log(pm);
+    console.log(instructor + "imprime the flash");
+    console.log(pm + "imprime Reverse Flash");
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor + "imprime the flash");
+console.log(pm + "imprime franco");
 ```
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
+6 / "3" 
 "2" * "3"
-4 + 5 + "px"
+4 + 5 + "px"  //9px
 "$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
+"4" - 2   //si lo resta
+"4px" - 2  // Al querer restar un str cun un retorna NaN
+7 / 0   //infinity
+{}[0]   // [0]
+parseInt("09")  //9
+5 && 2 //2
+2 && 5 //5
+5 || 0 //5
+0 || 5 //5
+[3]+[3]-[10]   // 23 ?????????
+3>2>1  //false
 [] == ![]
 ```
 
@@ -102,8 +102,8 @@ parseInt("09")
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a + "==> undefined"); //undefined
+   console.log(foo() + "==> 2"); // 2
 
    var a = 1;
    function foo() {
@@ -124,10 +124,12 @@ function getFood(food) {
         var snack = 'Friskies';
         return snack;
     }
-    return snack;
+    return snack;   // al hacer el hoisting dentro de esta contexto de ejec creo la variable snack = undeined
 }
 
-getFood(false);
+
+
+console.log(getFood(false) + " ==> Undefined ")
 ```
 
 
@@ -147,11 +149,11 @@ var obj = {
    }
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname() + " ==> Aurelio De Rosa");
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test() + "this quedo apntando hacia el objeto global y alli no hay in thuis.nombre");
 ```
 
 ### Event loop

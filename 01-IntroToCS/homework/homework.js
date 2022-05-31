@@ -24,12 +24,12 @@ function DecimalABinario(num) {
   else{
     while(num >= 1){
       result .push(num % 2)
-      num = Math.floor(num/2)
+      num = Math.floor(num/2)  //si no uso floor me da el numero con comas
     }
     
   }
-  result.reverse()
-  result = result.join("")
+  result.reverse()            // Invierto el resultado
+  result = result.join("")    //paso el resultado a string
   return result;
 
 }
